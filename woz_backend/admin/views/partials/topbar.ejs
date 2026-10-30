@@ -1,0 +1,37 @@
+<div class="header" style="top:-3px">
+  <nav class="navbar top-navbar navbar-expand-md navbar-light">
+    <div class="navbar-collapse">
+      <ul class="navbar-nav mr-auto mt-md-0">
+        <li class="nav-item m-l-10">
+          <a class="nav-link sidebartoggler hidden-sm-down text-muted" href="javascript:void(0)">
+            <i class="ti-menu" style="color:#fff;"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/admin"><b><%= appName %></b></a>
+        </li>
+      </ul>
+      <ul class="navbar-nav my-lg-0">
+        <% if (admin) { %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="<%= admin.avatarUrl || '/admin/assets/dashboard/images/avatar_blank.png' %>" alt="user" class="profile-pic">
+          </a>
+          <div class="dropdown-menu dropdown-menu-right p-t-0" style="background:#242526;color:#fff;box-shadow:0px 0px 1px #cecece">
+            <ul class="dropdown-user">
+              <li><a class="nav-link" href="/admin/users/<%= admin.objectId %>" style="color:#fff;"><i class="fa fa-user"></i> &nbsp;Edit profile</a></li>
+              <li>
+                <form method="post" action="/admin/logout" style="margin:0;">
+                  <button type="submit" class="nav-link" style="background:none;border:none;color:#fff;width:100%;text-align:left;">
+                    <i class="fa fa-sign-out"></i> &nbsp;Logout
+                  </button>
+                </form>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+  </nav>
+</div>

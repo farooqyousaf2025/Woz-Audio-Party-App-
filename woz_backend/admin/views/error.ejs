@@ -1,0 +1,20 @@
+<%- include('partials/head', { title: appName + ' - Error' }) %>
+<%- include('partials/topbar') %>
+<% if (admin) { %><%- include('partials/sidebar') %><% } %>
+<div class="page-wrapper">
+  <div class="container-fluid">
+    <div class="row justify-content-center" style="margin-top:80px;">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body text-center">
+            <h1 class="m-b-10">!</h1>
+            <h4 class="card-title"><%= message %></h4>
+            <p class="text-muted">Something went wrong while handling this request.</p>
+            <a class="btn btn-primary" href="/admin">Back to control panel</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('partials/footer') %>

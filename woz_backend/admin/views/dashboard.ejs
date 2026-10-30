@@ -1,0 +1,154 @@
+<%- include('partials/head', { title: appName + ' - Dashboard' }) %>
+<%- include('partials/topbar') %>
+<%- include('partials/sidebar') %>
+<div class="page-wrapper">
+  <div class="row page-titles">
+    <div class="col">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+        <li class="breadcrumb-item active">Control panel</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card p-30">
+          <div class="media">
+            <div class="media-left meida media-middle">
+              <span><i class="fa fa-user-plus f-s-60 text-white"></i></span>
+            </div>
+            <div class="media-body media-text-left">
+              <h2><%= counts.registeredToday %></h2>
+              <p class="m-b-0">Registered today</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card p-30">
+          <div class="media">
+            <div class="media-left meida media-middle">
+              <span><i class="fa fa-users f-s-60 text-white"></i></span>
+            </div>
+            <div class="media-body media-text-left">
+              <h2><%= counts.users %></h2>
+              <p class="m-b-0">Total Users</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card p-30">
+          <div class="media">
+            <div class="media-left meida media-middle">
+              <span><i class="fa fa-comments-o f-s-60 text-white"></i></span>
+            </div>
+            <div class="media-body media-text-left">
+              <h2><%= dynamic.Message || 0 %></h2>
+              <p class="m-b-0">Messages</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card p-30">
+          <div class="media">
+            <div class="media-left meida media-middle">
+              <span><i class="fa fa-video-camera f-s-60 text-white"></i></span>
+            </div>
+            <div class="media-body media-text-left">
+              <h2><%= dynamic.Streaming || 0 %></h2>
+              <p class="m-b-0">Live Streams</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card p-30">
+          <div class="media">
+            <div class="media-left meida media-middle"><span><i class="fa fa-newspaper-o f-s-60 text-white"></i></span></div>
+            <div class="media-body media-text-left">
+              <h2><%= dynamic.Posts || 0 %></h2>
+              <p class="m-b-0">Posts</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card p-30">
+          <div class="media">
+            <div class="media-left meida media-middle"><span><i class="fa fa-history f-s-60 text-white"></i></span></div>
+            <div class="media-body media-text-left">
+              <h2><%= dynamic.Stories || 0 %></h2>
+              <p class="m-b-0">Stories</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card p-30">
+          <div class="media">
+            <div class="media-left meida media-middle"><span><i class="fa fa-ban f-s-60 text-white"></i></span></div>
+            <div class="media-body media-text-left">
+              <h2><%= counts.blocked %></h2>
+              <p class="m-b-0">Blocked / deleted</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card p-30">
+          <div class="media">
+            <div class="media-left meida media-middle"><span><i class="fa fa-database f-s-60 text-white"></i></span></div>
+            <div class="media-body media-text-left">
+              <h2><%= counts.models %></h2>
+              <p class="m-b-0">Data models</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Latest users</h4>
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Registered</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% recentUsers.forEach(function (user) { %>
+                    <tr>
+                      <td><%= user.username %></td>
+                      <td><%= user.name || '-' %></td>
+                      <td><%= user.email || '-' %></td>
+                      <td><%= user.role %></td>
+                      <td><%= new Date(user.created_at).toLocaleString() %></td>
+                      <td><a class="btn btn-sm btn-primary" href="/admin/users/<%= user.object_id %>">Edit</a></td>
+                    </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('partials/footer') %>

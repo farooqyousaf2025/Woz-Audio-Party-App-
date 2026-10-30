@@ -1,0 +1,7 @@
+node_modules/
+uploads/
+tools/
+pgdata/
+.env
+*.log
+*.pid

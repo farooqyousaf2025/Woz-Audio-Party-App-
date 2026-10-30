@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "908354790229",
+    "project_id": "woz-audio-party",
+    "storage_bucket": "woz-audio-party.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:908354790229:android:0123456789abcdef01234567",
+        "android_client_info": {
+          "package_name": "com.woz.audioparty"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCJ9d4QzVdvn92eS2WQrZtDL3q1MfKnyg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

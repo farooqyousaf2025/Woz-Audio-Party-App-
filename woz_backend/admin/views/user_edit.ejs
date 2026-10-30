@@ -1,0 +1,98 @@
+<%- include('partials/head', { title: appName + ' - Edit user' }) %>
+<%- include('partials/topbar') %>
+<%- include('partials/sidebar') %>
+<div class="page-wrapper">
+  <div class="row page-titles">
+    <div class="col">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+        <li class="breadcrumb-item"><a href="/admin/users">Users</a></li>
+        <li class="breadcrumb-item active"><%= user.username %></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <% if (saved) { %>
+      <div class="alert alert-success">User updated.</div>
+    <% } %>
+
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Edit user</h4>
+            <form method="post" action="/admin/users/<%= user.object_id %>">
+              <div class="form-group">
+                <label>Object ID</label>
+                <input class="form-control" type="text" value="<%= user.object_id %>" readonly>
+              </div>
+              <div class="form-group">
+                <label>Username</label>
+                <input class="form-control" type="text" value="<%= user.username %>" readonly>
+              </div>
+              <div class="form-group">
+                <label>Name</label>
+                <input class="form-control" type="text" name="name" value="<%= user.name || '' %>">
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input class="form-control" type="email" name="email" value="<%= user.email || '' %>">
+              </div>
+              <div class="form-group">
+                <label>Role</label>
+                <select class="form-control" name="role">
+                  <option value="user" <%= user.role === 'user' ? 'selected' : '' %>>user</option>
+                  <option value="admin" <%= user.role === 'admin' ? 'selected' : '' %>>admin</option>
+                </select>
+              </div>
+              <div class="row">
+                <div class="col-md-3 form-group">
+                  <label>Credit</label>
+                  <input class="form-control" type="number" name="credit" value="<%= user.credit %>">
+                </div>
+                <div class="col-md-3 form-group">
+                  <label>Diamonds</label>
+                  <input class="form-control" type="number" name="diamonds" value="<%= user.diamonds %>">
+                </div>
+                <div class="col-md-3 form-group">
+                  <label>Diamonds total</label>
+                  <input class="form-control" type="number" name="diamonds_total" value="<%= user.diamonds_total %>">
+                </div>
+                <div class="col-md-3 form-group">
+                  <label>P coins</label>
+                  <input class="form-control" type="number" name="p_coins" value="<%= user.p_coins %>">
+                </div>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="activation_status" id="activation_status" <%= user.activation_status ? 'checked' : '' %>>
+                <label class="form-check-label" for="activation_status">Blocked (activation status)</label>
+              </div>
+              <div class="form-check m-b-20">
+                <input class="form-check-input" type="checkbox" name="account_deleted" id="account_deleted" <%= user.account_deleted ? 'checked' : '' %>>
+                <label class="form-check-label" for="account_deleted">Account deleted</label>
+              </div>
+              <div class="form-group">
+                <label>Reset password (leave empty to keep)</label>
+                <input class="form-control" type="password" name="password" autocomplete="new-password">
+              </div>
+              <button class="btn btn-primary" type="submit">Save</button>
+              <a class="btn btn-default" href="/admin/users">Back to users</a>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Profile data</h4>
+            <p class="text-muted">Registered: <%= new Date(user.created_at).toLocaleString() %></p>
+            <pre style="max-height:420px;overflow:auto;"><%= JSON.stringify(user.data || {}, null, 2) %></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('partials/footer') %>

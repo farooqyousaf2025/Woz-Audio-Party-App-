@@ -1,0 +1,12 @@
+# This repository tracks only the two shipped components:
+#   woz_audio_party_app/  Flutter client
+#   woz_backend/          Node + PostgreSQL API and admin panel
+# Everything else in this working directory is local scratch or vendor backups.
+/*
+!/.gitignore
+!/woz_audio_party_app/
+!/woz_backend/
+
+.DS_Store
+Thumbs.db
+*.tmp

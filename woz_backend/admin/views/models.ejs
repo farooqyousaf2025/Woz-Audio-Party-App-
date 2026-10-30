@@ -1,0 +1,51 @@
+<%- include('partials/head', { title: appName + ' - Data models' }) %>
+<%- include('partials/topbar') %>
+<%- include('partials/sidebar') %>
+<div class="page-wrapper">
+  <div class="row page-titles">
+    <div class="col">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+        <li class="breadcrumb-item active">Data models</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Registered classes</h4>
+        <p class="text-muted">Generated from the Flutter models. Every class is exposed at <code>/api/classes/&lt;ClassName&gt;</code>.</p>
+
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Class</th>
+                <th>Table</th>
+                <th>Dart file</th>
+                <th>Fields</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% models.forEach(function (model) { %>
+                <tr>
+                  <td><%= model.class_name %></td>
+                  <td><code><%= model.table_name %></code></td>
+                  <td><%= model.dart_file %></td>
+                  <td>
+                    <span class="label label-info"><%= (model.fields || []).length %></span>
+                    <div class="text-muted" style="font-size:11px;">
+                      <%= (model.fields || []).slice(0, 12).join(', ') %><%= (model.fields || []).length > 12 ? ' …' : '' %>
+                    </div>
+                  </td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('partials/footer') %>
